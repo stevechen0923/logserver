@@ -39,7 +39,7 @@ net.createServer(function(socket) {
     socket.on('close', function(data) {
         console.log('Connection Closed');
     });
-}).listen(tcpPort, tcpHost);
+}).listen(tcpPort);
 
 
 function writeLog(s) {
