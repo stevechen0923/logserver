@@ -5,7 +5,6 @@ var mongodb = require('mongodb');
 var MongoClient = require('mongodb').MongoClient;
 var objDB = null;
 
-var tcpHost = 'funtownlog.cloudapp.net';
 var tcpPort = 5000;
 var chunk = "";
 
@@ -59,4 +58,4 @@ function writeLog(s) {
 	}
 }
 
-console.log('Server listening on ' + tcpHost +':'+ tcpPort);
+console.log('Server listening port: '+ tcpPort);
