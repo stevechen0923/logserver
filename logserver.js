@@ -44,7 +44,11 @@ net.createServer(function(socket) {
 function writeLog(s) {
 	try{
 		var document = JSON.parse(s);
-		console.log(document.sn);
+		var ts = new Date().getTime();
+        var i = ts % 1000;
+        var t = new mongodb.BSONPure.Timestamp(i, Math.floor(ts * 0.001));
+		document.createTimeStamp = t;		
+		//console.log(document.sn);
 		if(objDB != null){
 			objDB.collection('log').insert(document, function(err, records) {
 				if (err){
@@ -58,4 +62,4 @@ function writeLog(s) {
 	}
 }
 
-console.log('Server listening port: '+ tcpPort);
+console.log('Server listening on port:'+ tcpPort);
