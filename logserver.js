@@ -1,6 +1,7 @@
 var net = require('net');
 var uuid = require('uuid');
 var mongodb = require('mongodb');
+var moment = require('moment');
 
 var MongoClient = require('mongodb').MongoClient;
 var objDB = null;
@@ -46,9 +47,10 @@ function writeLog(s) {
 		var document = JSON.parse(s);
 		var ts = new Date().getTime();
         var i = ts % 1000;
-        var t = new mongodb.BSONPure.Timestamp(i, Math.floor(ts * 0.001));
+        //var t = new mongodb.BSONPure.Timestamp(i, Math.floor(ts * 0.001));
+		var t = moment().format("YYYY-MM-DD hh:mm:ss.SSS");
 		document.createTimeStamp = t;		
-		//console.log(document.sn);
+		console.log(document.createTimeStamp);
 		if(objDB != null){
 			objDB.collection('log').insert(document, function(err, records) {
 				if (err){
